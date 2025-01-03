@@ -20,8 +20,10 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "mysql2": "^3.11.5",
-    "netlify-cli": "^17.38.1",
     "nodemon": "^3.1.7",
     "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.38.1"
   }
 }

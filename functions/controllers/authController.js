@@ -1,6 +1,6 @@
 const database = require("../config/db");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const registerController = async (req, res) => {
   try {
@@ -9,14 +9,14 @@ const registerController = async (req, res) => {
       "INSERT INTO student (`fname`, `lname`, `email`, `password`, `mobile`, `gender`, `state`,`address`) VALUES (?)";
 
     // Hash the password
-    const hash = await bcrypt.hash(req.body.password.toString(), saltRounds);
+    // const hash = await bcrypt.hash(req.body.password.toString(), saltRounds);
 
     // Prepare the values
     const values = [
       req.body.fname,
       req.body.lname,
       req.body.email,
-      hash,
+      req.body.password,
       req.body.mobile,
       req.body.gender,
       req.body.state,
@@ -68,21 +68,21 @@ const loginController = async (req, res) => {
     const user = data[0];
 
     // Compare passwords
-    const isMatch = await bcrypt.compare(
-      req.body.password.toString(),
-      user.password
-    );
+    // const isMatch = await bcrypt.compare(
+    //   req.body.password.toString(),
+    //   user.password
+    // );
 
-    if (!isMatch) {
-      // return res.status(401).send({
-      //   success: false,
-      //   message: "Invalid password",
-      // });
-      return res.json({
-        success: false,
-        message: "Invalid password",
-      });
-    }
+    // if (!isMatch) {
+    //   // return res.status(401).send({
+    //   //   success: false,
+    //   //   message: "Invalid password",
+    //   // });
+    //   return res.json({
+    //     success: false,
+    //     message: "Invalid password",
+    //   });
+    // }
 
     // Create JWT token (example)
     const token = jwt.sign({ id: user.id, email: user.email }, "secretkey", {
